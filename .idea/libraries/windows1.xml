@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="windows1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Jane/packages/distributables/windows.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

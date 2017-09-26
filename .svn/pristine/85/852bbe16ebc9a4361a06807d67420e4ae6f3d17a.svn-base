@@ -1,0 +1,13 @@
+0000000000000000000000000000000000000000 3d8f5aba6add3d7554e1ec12e9afc9c915c0eec4 unknown <Lisa@Lisa-T420.(none)> 1329801356 -0800	commit (initial): Initial commit.
+3d8f5aba6add3d7554e1ec12e9afc9c915c0eec4 5d8a5ad28e8578d475fe8eeabbf68ce752cc2325 unknown <Lisa@Lisa-T420.(none)> 1329802104 -0800	commit: Reorganized package structure
+5d8a5ad28e8578d475fe8eeabbf68ce752cc2325 d3d020021d7407160acd7f8a1162fc49db24d9e4 unknown <Lisa@Lisa-T420.(none)> 1329802114 -0800	commit: fixed
+d3d020021d7407160acd7f8a1162fc49db24d9e4 8b5397d9715607d0f98d4c67aa0aa95d7a274b5b unknown <Lisa@Lisa-T420.(none)> 1329808985 -0800	commit: In the middle of shiftHostTree.
+8b5397d9715607d0f98d4c67aa0aa95d7a274b5b ec8b7d8eefb5fc23347698e6781a75b6d8edfadf unknown <Lisa@Lisa-T420.(none)> 1329809183 -0800	commit: in the middle of shifthosttree
+ec8b7d8eefb5fc23347698e6781a75b6d8edfadf ae0ccb77c1c9eb157871ba9c19fca03c1e81e0b8 unknown <Lisa@Lisa-T420.(none)> 1331166733 -0800	commit: minor changes, comments
+ae0ccb77c1c9eb157871ba9c19fca03c1e81e0b8 cc744711151a832c0994173df550a8f324a944eb unknown <Lisa@Lisa-T420.(none)> 1331166740 -0800	revert: Revert "in the middle of shifthosttree"
+cc744711151a832c0994173df550a8f324a944eb 3558d2745d71df3a4fbbe5681f37bd541b120921 unknown <Lisa@Lisa-T420.(none)> 1332017769 -0400	commit: added src/beetree to compile-time libraries, now runs
+3558d2745d71df3a4fbbe5681f37bd541b120921 9b599cb6cc7a91e6b6730b0350663e08d8322832 unknown <Lisa@Lisa-T420.(none)> 1333640668 -0700	commit: added scaleBranch(). The classpath propblem came up again so we went to File/Properties and edited the compile-time classpath which forced it to update
+9b599cb6cc7a91e6b6730b0350663e08d8322832 70f9d205a4cb4a23b0848c74ab354a9734da012f unknown <Lisa@Lisa-T420.(none)> 1334007549 -0700	commit: working on window resize
+70f9d205a4cb4a23b0848c74ab354a9734da012f 70d2fff50e9f959a8a7a6c80e5d0985f55756265 unknown <Lisa@Lisa-T420.(none)> 1334854474 -0700	commit: implementing scale for parasite trees, need debug
+70d2fff50e9f959a8a7a6c80e5d0985f55756265 79801ae326fd9e70500b8dfeff0d4b9b6ff321f7 summer <summer@134.173.43.181> 1340653909 -0700	commit: 
+79801ae326fd9e70500b8dfeff0d4b9b6ff321f7 d73a5e4782aad8145ba22a3005d64cf5eceb20a3 summer <summer@134.173.43.181> 1340653923 -0700	commit: 

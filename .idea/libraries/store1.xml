@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="store1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Jane/src/BeeTrees/store/BeeTree.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Jane/src/BeeTrees/store/BeeTree.jar.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
