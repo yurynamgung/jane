@@ -14,5 +14,16 @@ Ran Libeskind-Hadas gratefully acknowledges the ongoing valuable research
 collaboration with Dr. Michael Charleston at the School of Information
 Technologies at the University of Sydney, Australia.
 
-# Documentation
-Documentation is under the doc folder. 
+# Folder Structure
+## doc
+Contains documentation regarding the dynamic programming as well as general source code documentation.
+
+## data
+Contains real trees to use in testing Jane. 
+
+## original-images
+Contains some of the artwork used in Jane. 
+
+# jane
+Contains the netbeans project with all the source code. 
+
