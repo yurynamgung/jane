@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Jane">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Jane/packages/executables/Jane.app/Contents/Resources/Java/Jane.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

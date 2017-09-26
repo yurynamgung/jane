@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="build-tools">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Jane/build-tools/jarbundler.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Jane/build-tools/autojar.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Jane/build-tools/proguard.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="fastutil-6.3-int2obj">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Jane/src/fastutil-6.3-int2obj.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

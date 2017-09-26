@@ -1,0 +1,487 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package beetree;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Collections;
+import javax.swing.JLabel;
+
+/**
+ *
+ * @author beametitiri
+ */
+public class Tree {
+
+    public static int ROOT_TYPE = 0;
+    public static int INTERNAL_TYPE = 1;
+    public static int LEAF_TYPE = 2;
+    
+    public static int HOST_TYPE = 0;
+    public static int PARASITE_TYPE = 1;
+
+
+public class Node implements Comparable<Node> {
+
+    private JLabel label;
+    private ArrayList<Node> children = new ArrayList<Node>();
+    private Node parent;
+    private ArrayList<Node> link = new ArrayList<Node>();
+    private int x, y; //position of node in template
+    private int type; // type of node
+    private int treeType;
+    private int depth;
+    private int minTime;
+    private int maxTime;
+    private int region;
+
+
+    public Node(int newx, int newy, Node newparent, int newdepth, int t) {
+        x = newx;
+        y = newy;
+        parent = newparent;
+        depth = newdepth;
+        label = new JLabel();
+        treeType = t;
+        
+    }
+    
+ 
+    // returns true if you want to display
+//    public boolean getDisplay() {
+//        return dispLabel;
+//    }
+//
+//    // set display label to true or false
+//    public void setDisplay(boolean b) {
+//        dispLabel = b;
+//    }
+
+    public int getTreeType() {
+        return treeType;
+    }
+    
+    public int getDepth() {
+        return depth;
+    }
+
+    public void setLabel(String newlabel) {
+        label.setText(newlabel);
+        int labelx = x;
+        //writes labels to the left of node if host, else to the right
+        if (treeType == HOST_TYPE) {
+            labelx += label.getWidth() - 50;
+        } else {
+            labelx += 10;
+        }
+        int labely = y - label.getHeight();
+        label.setLocation(labelx, labely);
+        //System.out.println("x, y: " + label.getX() + ", " + label.getY() + ", " + label.getHeight());
+    }
+
+    public JLabel getLabel() {
+        return label;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int newtype) {
+        type = newtype;
+    }
+
+    public ArrayList<Node> getChildren() {
+        return children;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public Node getParent() {
+        return parent;
+    }
+
+    public void setX(int newx) {
+        x = newx;
+        int labelx = newx;
+        if (treeType == HOST_TYPE) {
+            labelx = labelx - 50; 
+        } else {
+            labelx = labelx + 10;
+        }
+        label.setLocation(labelx, label.getY());
+    }
+
+    public void setY(int newy) {
+        y = newy;
+        label.setLocation(label.getX(), newy);
+    }
+
+    public Node getClosest() {
+        /*
+         * Returns the node in this node's subtree with the x closest to this
+         * node
+         */
+        int proximity = Integer.MAX_VALUE;
+        Node closeNode = null;
+        Node current;
+        int currprox;
+        for (int i = 0; i < children.size(); i++) {
+            current = children.get(i);
+            currprox = Math.abs(current.getX() - x);
+            if (currprox < proximity) {
+                proximity = currprox;
+                closeNode = current;
+            }
+        }
+        return closeNode;
+    }
+
+    //dependent on order of creation being top to bottom
+    public Node getLowest() {
+        /**
+         * Returns the node in this node's subtree with the highest y value
+         * (positioned lowest on the screen)
+         */
+        if (children.isEmpty())
+            return this;
+        Node current = children.get(children.size() - 1);
+        while (current.type != LEAF_TYPE) {
+            current = current.children.get(current.children.size() - 1);
+        }
+        return current;
+    }
+
+    public void addLink(Node tolink) {
+        /**
+         * Adds a link between this leaf node and a leaf node on another tree
+         */
+        link.add(tolink);
+    }
+
+    public Node getLastChild() 
+    {
+        return this.children.get(this.children.size()-1);
+    }
+    
+    public ArrayList<Node> getLink() {
+        return link;
+    }
+    
+    public void setLink(ArrayList<Node> linkList) {
+        link = linkList;
+    }
+
+    @Override
+    public String toString() {
+        /**
+         * Returns a string representation of this node
+         */
+        return "Node (" + x + ", " + y + ": " + type + ")";
+    }
+
+    public int compareTo(Node o) { 
+        /**
+         * Return -1, 0 , or 1 if this node is higher, at the same height, or
+         * lower than the specified node. This is used strictly for dealing with
+         * the spacial arrangement of leaf nodes
+         */
+        if (y < o.getY()) {
+            return -1;
+        }
+        if (y > o.getY()) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+    
+    public int getRegion() {
+        return region;
+    }
+    
+    public void setRegion(int r) {
+        region = r;
+    }
+    
+    public int getMinTime()
+    {
+        return minTime;
+    }
+    
+    public void setMinTime(int min)
+    {
+        minTime = min;
+    }
+    
+    public int getMaxTime()
+    {
+        return maxTime;
+    }
+    
+    public void setMaxTime(int max)
+    {
+        maxTime = max;
+    }
+}
+    //tree stuff
+    private Node root;
+    private ArrayList<Node> nodes;
+    private ArrayList<Node> leaves;
+    private int type;
+    private int maxdepth;
+    private int x, y;   //the top left corner of this tree's space
+    private int width, height;  //the dimensions of this tree's space
+
+    
+    
+
+    public Tree(int newx, int newy, int w, int h, int newtype) {
+
+        x = newx;
+        y = newy;
+        width = w;
+        height = h;
+        type = newtype;
+        if (type == HOST_TYPE)
+            root = new Node(x+10, height/2, null, 0, type);
+        else
+            root = new Node(x+width-10, height/2, null, 0, type);
+        root.setType(ROOT_TYPE);
+        nodes = new ArrayList<Node>();
+        leaves = new ArrayList<Node>();
+        nodes.add(root);
+        root.setRegion(0);
+        root.setMinTime(1);
+        root.setMaxTime(1);
+        maxdepth = 0;
+        
+
+    }
+
+    public int getX()
+    {
+        return x;
+    }
+    
+    // Update top left
+    public void setX(int newX)
+    {
+        x = newX;
+    }
+    
+    /*
+     * changes tree width, used when we stretch window
+     */
+    public void setWidth(int newWidth)
+    {
+        width = newWidth;
+    }
+    public ArrayList<Node> getLeaves() {
+
+        return leaves;
+    }
+
+    public int getNodeID(Node n, int off) {
+        return nodes.indexOf(n)+1+off;
+    }
+
+    public Node getRoot() {
+    /** Returns the root of the tree */
+        return root;
+    }
+
+    public int getSize() {
+    /** Returns the number of nodes in the tree */
+        return nodes.size();
+    }
+
+    public ArrayList<Node> getNodes() {
+    /** Returns the list of nodes in this tree */
+        return nodes;
+    }
+
+    public void setNodeType(Node node, int type) {
+    /** Set the node to the specified type */
+        node.setType(type);
+    }
+    
+    public int getMaxdepth() {
+        return maxdepth;
+    }
+ 
+
+    public void addChild(Node parent) { 
+    /** Adds a child to the specified node  */
+        
+        int newdepth = parent.depth+1;
+        if (newdepth > maxdepth)
+            maxdepth = newdepth;
+
+        if (parent.link != null) {
+            for (Tree.Node linkedNode : parent.link)
+            {
+                linkedNode.link.remove(parent);
+            }
+             parent.link = null;
+        }
+        int leafy = parent.getLowest().getY()+1;
+        
+
+        Node newnode = new Node(x, leafy, parent, newdepth, type); 
+        newnode.setType(LEAF_TYPE);
+        newnode.setRegion(parent.getRegion());
+            
+        leaves.remove(parent);
+
+
+        parent.children.add(newnode);
+        
+        if (parent.type != ROOT_TYPE)
+            parent.setType(INTERNAL_TYPE);
+        
+        
+        nodes.add(newnode);
+        addLeaf(newnode);
+        
+     }
+    
+    public void addLeaf(Node leaf) 
+    {
+        leaves.add(leaf);
+        Collections.sort(leaves);
+    }
+    
+    public void removeChild(Node child) {
+    /** Remove the given node and its children from the tree */
+        
+        //delete parent's reference and see if parent is now a leaf
+        if (child.type != ROOT_TYPE)
+        {
+            Node parent = child.parent;
+            parent.children.remove(child);
+            if (parent.children.isEmpty() && parent.type != ROOT_TYPE) {
+                parent.setType(LEAF_TYPE);
+                int leafTime = leaves.get(0).getMaxTime();
+                parent.setMinTime(leafTime);
+                parent.setMaxTime(leafTime);
+                addLeaf(child.parent);
+            }
+            nodes.remove(child);
+            leaves.remove(child);
+            deleteSubtree(child);
+            if (parent.children.size() == 1)
+            {
+                Node otherChild = parent.children.get(0);
+                if (otherChild.children.isEmpty())
+                {
+                    removeChild(otherChild);
+                }
+                else
+                {
+                    parent.children = otherChild.children;
+                    for (Node c : otherChild.children)
+                    {
+                        c.parent = parent;
+                    }
+                    nodes.remove(otherChild);
+                }
+            }
+        }
+    }
+
+
+    /*
+     * Deletes subtree with given root from node/leaf lists
+     */
+    private void deleteSubtree(Node root) 
+    {
+        boolean changeMaxDepth = false;
+        for (Node c : root.getChildren())
+        {
+            nodes.remove(c);
+            leaves.remove(c);
+            deleteSubtree(c);
+            if (c.depth == maxdepth) 
+            {
+                    changeMaxDepth = true; 
+            }
+        }
+        //may need to change maxdepth if child's descendents reach maxdepth
+        if (changeMaxDepth) { 
+            maxdepth = 0;
+            for (int i=0; i < leaves.size(); i++) {
+                int leafDepth = leaves.get(i).depth;
+                if (leafDepth > maxdepth) {
+                    maxdepth = leafDepth;
+                }
+            }
+        }
+    } 
+    
+    /*
+     * makes .tree file output for tree
+     */
+    public String makeTreeOutput(int off) {
+        String toReturn = "";
+        Node current;
+        for (int i=0; i<nodes.size(); i++) {
+            current = nodes.get(i);
+            toReturn += (i+1+off);
+            int numChildren = current.children.size();
+            if (numChildren == 0)
+                toReturn += "\t" + "null";
+            else
+            {
+                for (int j=0; j<numChildren; j++) 
+                {
+                        toReturn += "\t" + (nodes.indexOf(current.children.get(j))+1+off);
+                }
+            }
+            toReturn += "\n";
+        }
+        return toReturn;
+    }
+
+    /*
+     * makes .tree file output for node labels
+     */
+    public String makeNameOutput(int off) {
+        String toReturn = "";
+        Node current;
+        for (int i=0; i<nodes.size(); i++) {
+            current = nodes.get(i);
+            if (current.getLabel().getText().length() == 0)
+                toReturn += (i+1+off) + "\t" + (i+1+off) + "\n";
+            else
+                toReturn += (i+1+off) + "\t" + current.getLabel().getText() + "\n";
+        }
+        return toReturn;
+    }
+    
+    /*
+     * makes .tree file output for time zones
+     */
+    public String makeTimeOutput(int off) {
+        String toReturn = "";
+        Node current;
+        for (int i=0; i<nodes.size(); i++) {
+            current = nodes.get(i);
+            if (current.getMinTime() != current.getMaxTime())
+                toReturn += (i+1+off) + "\t" + current.getMinTime()+ "," + current.getMaxTime() + "\n";
+            else
+                toReturn += (i+1+off) + "\t" + current.getMinTime()+ "\n";
+        }
+        return toReturn;
+    }
+
+}
