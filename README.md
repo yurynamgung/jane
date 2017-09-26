@@ -24,6 +24,9 @@ Contains real trees to use in testing Jane.
 ## original-images
 Contains some of the artwork used in Jane. 
 
-# jane
+## jane
 Contains the netbeans project with all the source code. 
+
+## beetree
+Deprecated material. 
 
